@@ -2,10 +2,64 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="popup.css">
     <script type="module" src="popup.js"></script>
+    <title>Request Flags</title>
+    <style>
+        /* Inline critical styles to avoid FOUC in small popup */
+    </style>
+    <base target="_blank">
+    <link rel="preconnect" href="https://dns.google">
+    <link rel="preconnect" href="https://ipwho.is">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+        /* Force emoji glyphs to use color emoji fonts */
+        #main-flag, .req .flag { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; font-variant-emoji: emoji; }
+    </style>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; connect-src 'self' https://dns.google https://ipwho.is; img-src 'self' data:; script-src 'self';">
+    <!-- Note: CSP allows connect-src to the APIs used in background if needed here -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="dir" content="ltr">
+    <meta name="lang" content="en">
 </head>
 <body>
-    <strong>Hello World!</strong>
+    <div class="shell">
+    <header id="header">
+        <div class="header-left">
+            <div id="main-flag" aria-label="Main page flag">❓</div>
+        </div>
+        <div class="header-text">
+            <div id="main-host">-</div>
+            <div id="main-country">- <button id="reload-page" title="Reload current page">↻</button></div>
+        </div>
+        <div id="header-stats">
+            <div class="stat">Requests: <span id="count-requests">0</span></div>
+            <div class="stat">Countries: <span id="count-countries">0</span></div>
+        </div>
+    </header>
+    <section id="requests-section" class="content">
+        <div class="section-title">Requests</div>
+        <ul id="requests"></ul>
+
+        
+
+        <section id="site-prefs-section">
+            <div class="section-title">Website preferences</div>
+            <div class="site-prefs card">
+                <ul id="site-prefs-list"></ul>
+            </div>
+        </section>
+    <!-- Footer removed: counts moved to header -->
+    </div>
 </body>
 </html>
