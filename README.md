@@ -64,8 +64,7 @@ A Safari extension that reveals the geographic origin of web requests, helping y
 
 ## 🎯 Use Cases
 
-- **Censorship Evasion**: In countries with heavy internet moderation (Iran, China), foreign API requests can leak your real IP if traffic is being forwarded through different routes. This extension helps identify which requests might compromise your privacy.
-- **VPN Leak Detection**: Verify that your VPN is properly routing traffic and identify any leaks to your real geographic location.
+- **VPN Leak Detection**: In countries with heavy internet moderation (Iran, China), foreign API requests can leak your real IP if traffic is being forwarded through different routes. This extension helps identify which requests might compromise your privacy.
 - **Privacy Auditing**: Understand where your browsing data is being sent and identify unexpected third-party requests.
 - **Security Research**: Analyze request patterns and detect potential data exfiltration or suspicious international connections.
 - **Content Blocking**: Block unwanted international requests that might be tracking or collecting data.
