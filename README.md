@@ -2,7 +2,7 @@
 
 A Safari extension that reveals the geographic origin of web requests, helping you understand where your data is going.
 
-<img src="Shared%20(App)/Resources/Icon.png" width="64" height="64" alt="Extension Icon">
+<img src="Shared%20(App)/Resources/Icon.png" width="128" height="128" alt="Extension Icon">
 
 ## ✨ Features
 
