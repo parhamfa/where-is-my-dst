@@ -2,7 +2,7 @@
 
 A Safari extension that reveals the geographic origin of web requests, helping you understand where your data is going.
 
-![Extension Icon](Shared%20(App)/Resources/Icon.png)
+<img src="Shared%20(App)/Resources/Icon.png" width="64" height="64" alt="Extension Icon">
 
 ## ✨ Features
 
@@ -21,27 +21,7 @@ A Safari extension that reveals the geographic origin of web requests, helping y
 4. **Block Unwanted Requests**: Use the "Block" button to prevent requests from specific domains
 5. **Manage Preferences**: View and manage your blocking rules in the Website Preferences section
 
-## 📱 Screenshots
-
-### Main Interface
-The extension shows country flags and request details in an elegant popup:
-
-- **Header**: Current website's country flag and reload button
-- **Requests Section**: All network requests grouped by country with block buttons
-- **Website Preferences**: Manage site-specific blocking rules
-
-### Key Interactions
-- **Country Flags**: Visual indicators for request origins
-- **One-Click Blocking**: Block domains instantly with visual feedback
-- **Animated UI**: Smooth transitions and hover effects throughout
-
 ## 🛠 Technical Details
-
-### Architecture
-- **Safari Web Extension**: Built using Manifest V3
-- **Background Script**: Handles request interception and geolocation
-- **Content Script**: Captures additional requests using PerformanceObserver
-- **Popup Interface**: React-like dynamic UI with smooth animations
 
 ### APIs Used
 - **IP Geolocation**: `ipwho.is` for country detection
@@ -84,11 +64,11 @@ The extension shows country flags and request details in an elegant popup:
 
 ## 🎯 Use Cases
 
-- **Privacy Auditing**: Understand where your browsing data is being sent
-- **Security Research**: Analyze third-party request patterns
-- **Content Blocking**: Block unwanted international requests
-- **Educational**: Learn about web request geography
-- **Development**: Debug and analyze web application request flows
+- **Censorship Evasion**: In countries with heavy internet moderation (Iran, China), foreign API requests can leak your real IP if traffic is being forwarded through different routes. This extension helps identify which requests might compromise your privacy.
+- **VPN Leak Detection**: Verify that your VPN is properly routing traffic and identify any leaks to your real geographic location.
+- **Privacy Auditing**: Understand where your browsing data is being sent and identify unexpected third-party requests.
+- **Security Research**: Analyze request patterns and detect potential data exfiltration or suspicious international connections.
+- **Content Blocking**: Block unwanted international requests that might be tracking or collecting data.
 
 ## 🔒 Privacy & Security
 
@@ -104,14 +84,6 @@ The extension shows country flags and request details in an elegant popup:
 - **Responsive Layout**: Adapts to different content sizes
 - **Accessibility**: Proper ARIA labels and keyboard navigation
 - **Dark Mode Support**: Automatic adaptation to system preferences
-
-## 🚀 Future Enhancements
-
-- **Advanced Filtering**: More granular request filtering options
-- **Export Data**: Export request logs for analysis
-- **Custom Rules**: Advanced blocking rule syntax
-- **Performance Metrics**: Request timing and size analytics
-- **Bulk Actions**: Batch operations on multiple requests
 
 ## 🤝 Contributing
 
