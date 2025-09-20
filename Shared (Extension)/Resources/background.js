@@ -269,7 +269,12 @@ async function handleMainFrame(details) {
     const { tabId, url, ip } = details;
     if (tabId === -1 || tabId === undefined) return;
     const tabData = getOrCreateTabData(tabId);
-    tabData.mainFrame.url = url;
+    
+    // Only update mainFrame URL if we don't already have one, or if this is more authoritative
+    if (!tabData.mainFrame.url || details.type === "main_frame") {
+        tabData.mainFrame.url = url;
+    }
+    
     tabData.counters.totalRequests = (tabData.counters.totalRequests || 0) + 1;
 
     let ipAddress = ip;
@@ -329,10 +334,15 @@ if (browser.webNavigation && browser.webNavigation.onCommitted) {
                 const tabId = details.tabId;
                 const url = details.url;
                 const tabData = getOrCreateTabData(tabId);
-                tabData.mainFrame.url = url;
+                
+                // Only update mainFrame URL if we don't already have one
+                if (!tabData.mainFrame.url) {
+                    tabData.mainFrame.url = url;
+                }
+                
                 // Attempt to resolve and geolocate like handleMainFrame
                 const ipAddress = await resolveHostnameToIp(extractHostname(url));
-                tabData.mainFrame.ip = ipAddress;
+                tabData.mainFrame.ip = tabData.mainFrame.ip || ipAddress;
                 const geo = await fetchCountryForIp(ipAddress);
                 if (geo) {
                     tabData.mainFrame.countryCode = geo.countryCode;
@@ -370,7 +380,10 @@ browser.runtime.onMessage.addListener((message, sender) => {
         const tabId = sender.tab?.id;
         if (tabId !== undefined) {
             const tabData = getOrCreateTabData(tabId);
-            if (message.url) tabData.mainFrame.url = message.url;
+            // Only update mainFrame URL if we don't already have one
+            if (message.url && !tabData.mainFrame.url) {
+                tabData.mainFrame.url = message.url;
+            }
             void (async () => {
                 // If country missing, resolve now
                 if (!tabData.mainFrame.countryCode && message.url) {
@@ -410,6 +423,12 @@ browser.runtime.onMessage.addListener((message, sender) => {
             if (tabId !== undefined) {
                 if (!data) data = getOrCreateTabData(tabId);
                 const url = active?.url || data.mainFrame.url;
+                
+                // Always use the actual tab URL as the authoritative main frame URL
+                if (active?.url) {
+                    data.mainFrame.url = active.url;
+                }
+                
                 if (url && !data.mainFrame.countryCode) {
                     const ipAddress = await resolveHostnameToIp(extractHostname(url));
                     data.mainFrame.ip = data.mainFrame.ip || ipAddress;
