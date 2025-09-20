@@ -43,7 +43,7 @@ A Safari extension that reveals the geographic origin of web requests, helping y
 ### Setup
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/where-is-my-dst.git
+   git clone https://github.com/parhamfa/where-is-my-dst.git
    cd where-is-my-dst
    ```
 
