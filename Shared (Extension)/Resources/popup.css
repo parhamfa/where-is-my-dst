@@ -186,7 +186,7 @@ button[disabled] {
     transform: translateY(-10px);
 }
 .group.open .group-items { 
-    max-height: 500px;
+    max-height: 10000px;
     opacity: 1;
     transform: translateY(0);
 }
@@ -324,7 +324,7 @@ button[disabled] {
 }
 
 .rule-group[open] .site-items {
-    max-height: 500px;
+    max-height: 10000px;
     opacity: 1;
     transform: translateY(0);
 }
