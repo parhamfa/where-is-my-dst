@@ -1,0 +1,10 @@
+{
+    "extension_name": {
+        "message": "Where is my Dst?",
+        "description": "The display name for the extension."
+    },
+    "extension_description": {
+        "message": "This is Where is my Dst?. You should tell us what your extension does here.",
+        "description": "Description of what the extension does."
+    }
+}

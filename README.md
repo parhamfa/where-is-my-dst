@@ -62,6 +62,19 @@ A Safari extension that reveals the geographic origin of web requests, helping y
    - Enable "Where is my Dst?"
    - Grant necessary permissions
 
+### Chrome (Unpacked Extension)
+1. **Open the Chrome bundle directory**: `Chrome (Extension)/Resources`
+2. **Vendor library**: `vendor/browser-polyfill.min.js` is included so the extension can keep using the `browser.*` APIs that the Safari version expects.
+3. **Load the extension**:
+   - Navigate to `chrome://extensions`
+   - Turn on *Developer mode*
+   - Click *Load unpacked* and pick the `Chrome (Extension)/Resources` folder
+4. **Grant permissions** when prompted so the extension can observe network activity.
+5. **Test the build**:
+   - Visit a few sites and confirm the toolbar badge switches from the default icon to the two-letter country code
+   - Open the popup to verify request lists populate and country/group counters update
+   - Press **Block on this site** for a request and ensure it reappears under *Website preferences* while the network request is blocked after reloading the tab
+
 ## 🎯 Use Cases
 
 - **VPN Leak Detection**: In countries with heavy internet moderation (Iran, China), foreign API requests can leak your real IP if traffic is being forwarded through different routes. This extension helps identify which requests might compromise your privacy.
