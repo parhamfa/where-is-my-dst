@@ -47,3 +47,8 @@ AppIcon-temp.*
 
 # Safari Extension artifacts
 *.safariextension
+
+# Chrome Extension (Node.js)
+chrome-extension-rebuild/node_modules/
+chrome-extension-rebuild/dist/
+chrome-extension-rebuild/.DS_Store

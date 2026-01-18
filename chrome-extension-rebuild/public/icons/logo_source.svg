@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <!-- Main Pin Shape: Deep Blue -->
+  <path d="M256 32C149.96 32 64 117.96 64 224C64 368 256 480 256 480C256 480 448 368 448 224C448 117.96 362.04 32 256 32Z" fill="#1E3A8A"/>
+  
+  <!-- Globe Grid Lines (White, Transparent stroke) -->
+  <g clip-path="url(#clip0)">
+      <circle cx="256" cy="224" r="140" stroke="#60A5FA" stroke-width="24" stroke-opacity="0.3" fill="none"/>
+      
+      <!-- Equator -->
+      <path d="M116 224H396" stroke="white" stroke-width="24" stroke-linecap="round"/>
+      
+      <!-- Prime Meridian -->
+      <path d="M256 84V364" stroke="white" stroke-width="24" stroke-linecap="round"/>
+      
+      <!-- Latitudes -->
+      <ellipse cx="256" cy="224" rx="90" ry="140" stroke="white" stroke-width="24" stroke-opacity="0.3" fill="none"/>
+  </g>
+  
+  <!-- White Outline Inner Ring -->
+  <circle cx="256" cy="224" r="120" stroke="white" stroke-width="24" fill="none"/>
+</svg>

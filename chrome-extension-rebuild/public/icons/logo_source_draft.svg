@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Deep Blue Color: #0f172a (matching the slate-900 theme) or a brighter blue #2563EB -->
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M256 32C158.8 32 80 110.8 80 208C80 328 256 480 256 480C256 480 432 328 432 208C432 110.8 353.2 32 256 32ZM256 384C256 384 144 266.8 144 208C144 146.1 194.1 96 256 96C317.9 96 368 146.1 368 208C368 266.8 256 384 256 384Z" fill="#1E40AF"/>
+    
+    <!-- Globe Grid Lines inside the pin head -->
+    <path d="M256 96C194.1 96 144 146.1 144 208C144 227.1 150.3 244.8 160.9 259.6C160.9 259.6 195 240 256 240C317 240 351.1 259.6 351.1 259.6C361.7 244.8 368 227.1 368 208C368 146.1 317.9 96 256 96ZM256 128C270 128 285 140 295 160C285 180 270 200 256 200C242 200 227 180 217 160C227 140 242 128 256 128ZM256 208C256 208 256 208 256 208Z" fill="#3B82F6" fill-opacity="0.3"/>
+    
+    <!-- Vertical line -->
+    <path d="M256 96V384" stroke="#1E40AF" stroke-width="0"/>
+    
+    <!-- Horizontal Equator -->
+    <path d="M144 208H368" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round"/>
+    <!-- Vertical Meridian -->
+    <path d="M256 96V320" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round"/>
+    
+    <!-- Clean Globe Pin shape refinement -->
+    <circle cx="256" cy="208" r="112" stroke="#FFFFFF" stroke-width="24"/>
+    <path d="M256 96V320" stroke="#FFFFFF" stroke-width="24"/>
+    <path d="M144 208H368" stroke="#FFFFFF" stroke-width="24"/>
+    
+    <!-- Masking/Redrawing for clarity: Let's do a simpler geometric globe -->
+    <!-- Reset content for a truly clean vector -->
+</svg>

@@ -9,6 +9,7 @@ const tabDataById = new Map(); // tabId -> { mainFrame, requests }
 const SHOW_EMOJI_IN_BADGE = false;
 // Limit how many request items we keep in memory for the popup list
 const MAX_REQUEST_ITEMS = 200;
+const MAX_DNR_RULE_ID = 2147483647;
 
 // Blocking rules storage key
 const BLOCKING_STORAGE_KEY = "blockingRules"; // user-managed: [{ id, pattern, action, siteHost? }]
@@ -32,12 +33,35 @@ async function saveBlockingRules(rules) {
     try { await browser.storage.local.set({ [BLOCKING_STORAGE_KEY]: rules }); } catch (_) {}
 }
 
+function normalizeRuleIds(rules) {
+    const usedIds = new Set();
+    let changed = false;
+    let nextCandidate = 1;
+    for (const rule of rules) {
+        let id = Number(rule.id);
+        if (!Number.isInteger(id) || id < 1 || id > MAX_DNR_RULE_ID || usedIds.has(id)) {
+            while (nextCandidate <= MAX_DNR_RULE_ID && usedIds.has(nextCandidate)) {
+                nextCandidate++;
+            }
+            id = nextCandidate <= MAX_DNR_RULE_ID ? nextCandidate : MAX_DNR_RULE_ID;
+            changed = true;
+        }
+        usedIds.add(id);
+        rule.id = id;
+        if (id >= nextCandidate && id < MAX_DNR_RULE_ID) {
+            nextCandidate = id + 1;
+        }
+    }
+    return changed;
+}
+
 async function rebuildDynamicRules() {
     try {
         const userRules = await loadBlockingRules();
-        // Normalize ids for any missing ones (shouldn't happen after save)
-        let nextId = 1;
-        for (const r of userRules) { if (!r.id) r.id = nextId++; }
+        const normalized = normalizeRuleIds(userRules);
+        if (normalized) {
+            await saveBlockingRules(userRules);
+        }
         const existing = await browser.declarativeNetRequest.getDynamicRules();
         const toRemove = existing.map(r => r.id);
         const toAdd = userRules.map(r => {
@@ -453,8 +477,7 @@ browser.runtime.onMessage.addListener((message, sender) => {
     if (message.type === "addSiteBlockRule") {
         return (async () => {
             const rules = await loadBlockingRules();
-            const id = Date.now();
-            rules.push({ id, pattern: message.pattern, action: "block", siteHost: message.siteHost });
+            rules.push({ id: null, pattern: message.pattern, action: "block", siteHost: message.siteHost });
             await applyBlockingRules(rules);
             return rules;
         })();
